@@ -5,12 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
-  OneToMany,
+  ManyToOne,
 } from "typeorm";
-import { Contact } from "./contact.entity";
+import { User } from "./user.entity";
 
-@Entity("users")
-class User {
+@Entity("contacts")
+class Contact {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -23,9 +23,6 @@ class User {
   @Column({ length: 11 })
   telefone: string;
 
-  @Column({ length: 120 })
-  password: string;
-
   @CreateDateColumn()
   createdAt: string;
 
@@ -35,8 +32,8 @@ class User {
   @DeleteDateColumn()
   deletedAt: string;
 
-  @OneToMany(() => Contact, (contact) => contact.user)
-  contacts: Contact[];
+  @ManyToOne(() => User)
+  user: User;
 }
 
-export { User };
+export { Contact };

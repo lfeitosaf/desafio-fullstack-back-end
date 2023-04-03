@@ -1,5 +1,6 @@
 import { hashSync } from "bcryptjs";
 import { z } from "zod";
+import { returnMultipleContactsSchema } from "./contacts.schemas";
 
 const userSchema = z.object({
   name: z.string().min(3).max(100),
@@ -16,22 +17,26 @@ const userSchema = z.object({
 
 const userUpdateSchema = userSchema.partial();
 
-const returnUserSchema = userSchema
-  .extend({
-    id: z.string(),
-    createdAt: z.date(),
-    updatedAt: z.date(),
-    deletedAt: z.date().nullable(),
-  })
-  .omit({
-    password: true,
-  });
+const returnUserSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  email: z.string().email(),
+  telefone: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  deletedAt: z.date().nullable(),
+});
 
 const returnMultipleUsersSchema = returnUserSchema.array();
+
+const userWithContactsSchema = returnUserSchema.extend({
+  contacts: returnMultipleContactsSchema,
+});
 
 export {
   userSchema,
   returnUserSchema,
   returnMultipleUsersSchema,
   userUpdateSchema,
+  userWithContactsSchema,
 };

@@ -9,11 +9,20 @@ const createUserService = async (userData: IUser): Promise<IUserReturn> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const userEmail = userData.email;
+  const userTelephone = userData.telefone.toString();
 
   const searchUser = await userRepository.findOneBy({ email: userEmail });
 
   if (searchUser) {
     throw new AppError("Email already in use", 409);
+  }
+
+  const searchTelephone = await userRepository.findOneBy({
+    telefone: userTelephone,
+  });
+
+  if (searchTelephone) {
+    throw new AppError("Telephone number already registered", 409);
   }
 
   const createdUser = userRepository.create(userData);
