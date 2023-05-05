@@ -4,6 +4,7 @@ import listContactsService from "../services/contacts/listContacts.service";
 import listContactsByUserService from "../services/contacts/listContactsByUser.service";
 import createContactService from "../services/contacts/createContact.service";
 import deleteContactService from "../services/contacts/deleteContact.service";
+import updateContactService from "../services/contacts/editContact.service";
 
 const createContactController = async (
   req: Request,
@@ -36,6 +37,15 @@ const listContactsByUserController = async (
   return res.json(contacts);
 };
 
+const updateContactController = async (req: Request, res: Response) => {
+  const contactData = req.body;
+  const IdContact = req.params.id;
+
+  const updatedContact = await updateContactService(contactData, IdContact);
+
+  return res.json(updatedContact);
+};
+
 const deleteContactController = async (req: Request, res: Response) => {
   await deleteContactService(req.params.id);
 
@@ -47,4 +57,5 @@ export {
   listContactsController,
   listContactsByUserController,
   deleteContactController,
+  updateContactController,
 };

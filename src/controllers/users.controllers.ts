@@ -27,8 +27,9 @@ const deleteUserController = async (req: Request, res: Response) => {
 };
 
 const updateUserController = async (req: Request, res: Response) => {
+  console.log(req.user.id);
   const userData = req.body;
-  const IdUser = req.params.id;
+  const IdUser = req.user.id;
 
   const updatedUser = await updateUserService(userData, IdUser);
 
@@ -36,6 +37,7 @@ const updateUserController = async (req: Request, res: Response) => {
 };
 
 const getOwnProfile = async (req: Request, res: Response) => {
+  console.log(req.user.id);
   const IdUser = req.user.id;
   const ownProfile = await getOwnProfileService(IdUser);
 

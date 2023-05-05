@@ -4,6 +4,7 @@ import {
   deleteContactController,
   listContactsByUserController,
   listContactsController,
+  updateContactController,
 } from "../controllers/contacts.controllers";
 import ensureTokenIsValidMiddleware from "../middlewares/ensureTokenIsValid.middleware";
 import ensureUserExistsMiddleware from "../middlewares/ensureUserExists.middleware";
@@ -16,6 +17,11 @@ contactRoutes.get(
   "/users/:id",
   ensureUserExistsMiddleware,
   listContactsByUserController
+);
+contactRoutes.patch(
+  "/:id",
+  ensureTokenIsValidMiddleware,
+  updateContactController
 );
 contactRoutes.delete(
   "/:id",
