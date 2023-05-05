@@ -13,6 +13,12 @@ yarn install
 ````
 <br>
 
+Para rodar as migrations utilize o comando:
+
+```
+yarn typeorm migration:run -d src/data-source.ts
+```
+
 **Configure as variáveis de ambiente no seu .env**, passando as credenciais corretas para conectar em seu banco local
 
 
@@ -23,3 +29,4 @@ yarn dev
 
 <br>
 
+Link da documentação da API: https://desafiofullstackdoc.vercel.app
