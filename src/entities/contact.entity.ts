@@ -32,7 +32,7 @@ class Contact {
   @DeleteDateColumn()
   deletedAt: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.contacts, { onDelete: "CASCADE" })
   user: User;
 }
 

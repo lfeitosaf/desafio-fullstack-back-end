@@ -35,7 +35,7 @@ class User {
   @DeleteDateColumn()
   deletedAt: string;
 
-  @OneToMany(() => Contact, (contact) => contact.user)
+  @OneToMany(() => Contact, (contact) => contact.user, { cascade: true })
   contacts: Contact[];
 }
 

@@ -19,7 +19,11 @@ userRoutes.post(
   createUserController
 );
 userRoutes.get("", ensureTokenIsValidMiddleware, listUsersController);
-userRoutes.delete("/:id", ensureUserExistsMiddleware, deleteUserController);
+userRoutes.delete(
+  "/profile",
+  ensureTokenIsValidMiddleware,
+  deleteUserController
+);
 userRoutes.patch(
   "/profile",
   ensureTokenIsValidMiddleware,
