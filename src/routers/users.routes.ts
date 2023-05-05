@@ -21,9 +21,9 @@ userRoutes.post(
 userRoutes.get("", ensureTokenIsValidMiddleware, listUsersController);
 userRoutes.delete("/:id", ensureUserExistsMiddleware, deleteUserController);
 userRoutes.patch(
-  "/:id",
+  "/profile",
+  ensureTokenIsValidMiddleware,
   ensureDataIsValidMiddleware(userUpdateSchema),
-  ensureUserExistsMiddleware,
   updateUserController
 );
 userRoutes.get("/profile", ensureTokenIsValidMiddleware, getOwnProfile);
