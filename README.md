@@ -1,5 +1,7 @@
 # Desafio Fullstack Back-end
 
+Projeto com o objetivo de criar um usuário e esse poder cadastrar vários contatos, ambos com CRUD (Back-end).
+
 Para utilizar este projeto, é necessário instalar as dependências e cumprir todos os requerimentos.
 
 Requerimentos: 
